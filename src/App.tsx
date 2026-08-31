@@ -128,7 +128,7 @@ function App() {
       <main id="top">
         <motion.section className="hero-section" initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}>
           <motion.div className="hero-copy" variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } }}>
-            <div className="eyebrow"><span className="eyebrow-line" /> Krishna Infotech Solutions · Est. 2000</div>
+            <div className="eyebrow"><span className="eyebrow-line" /> Krishna Infotech Solutions · Est. 2021</div>
             <h1>Technology<br /><em>that works</em><br />for your<br /><span>business.</span></h1>
             <p className="hero-intro">From laptop rentals that keep a project moving to complete workplace setups, KIS is the dependable technology partner behind your next step.</p>
             <div className="hero-actions">
@@ -146,7 +146,7 @@ function App() {
                 <strong>Ready for<br />what&apos;s next.</strong>
                 <div className="hero-callout-services"><span>01 / Rentals</span><span>02 / Hardware</span><span>03 / IT setups</span></div>
               </div>
-              <div className="hero-image-caption"><span>Since</span><strong>2000</strong></div>
+              <div className="hero-image-caption"><span>Since</span><strong>2021</strong></div>
             </div>
             <div className="visual-orbit orbit-one" />
             <div className="visual-orbit orbit-two" />
@@ -155,7 +155,7 @@ function App() {
             <div className="visual-panel panel-burgundy"><span>03 / BUILT TO LAST</span><Network size={62} strokeWidth={1.2} /><strong>IT &<br />NETWORKING</strong></div>
             <div className="visual-sticker"><ShieldCheck size={17} /><span>Trusted technology.<br />Straightforward service.</span></div>
           </motion.div>
-          <div className="hero-footer"><span>A trusted technology partner since 2000</span><span className="scroll-note">Scroll to discover <span>↓</span></span><span>Serving businesses across India</span></div>
+          <div className="hero-footer"><span>A trusted technology partner since 2021</span><span className="scroll-note">Scroll to discover <span>↓</span></span><span>Serving businesses across India</span></div>
         </motion.section>
 
         <div className="trusted-strip" aria-label="Companies we work with">
@@ -202,7 +202,7 @@ function App() {
         </motion.section>
 
         <motion.section className="about-section" id="about" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }}>
-          <div className="about-graphic"><img className="kis-logo" src="/icon1.png" alt="" /><div className="graphic-label">Krishna Infotech Solutions /<br />A trusted name since 2000</div><div className="graphic-dot" /></div>
+          <div className="about-graphic"><img className="kis-logo" src="/icon1.png" alt="" /><div className="graphic-label">Krishna Infotech Solutions /<br />A trusted name since 2021</div><div className="graphic-dot" /></div>
           <div className="about-copy"><div className="section-kicker">03 / About KIS</div><h2>Experience you<br />can <em>count on.</em></h2><p>What started as a technology company built on trust has grown into a reliable B2B partner for organizations across India. We keep things clear, responsive, and focused on what helps your business perform.</p><div className="benefit-list">{benefits.map((benefit) => <div key={benefit}><span><Check size={14} /></span>{benefit}</div>)}</div><a className="button button-dark" href={whatsappLink('Hi, I visited the KIS website and would like to work with your team.')} target="_blank" rel="noreferrer">Work with KIS <ArrowUpRight size={18} /></a></div>
         </motion.section>
 
