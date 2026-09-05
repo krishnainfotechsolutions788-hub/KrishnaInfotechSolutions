@@ -64,24 +64,6 @@ const address = 'Entrance from, 1st floor, 1 Acharya Jagadish Chandra Bose Road,
 
 const whatsappLink = (message: string) => `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-function MyntraMark() {
-  return (
-    <svg className="brand-logo myntra-logo" viewBox="0 0 72 40" role="img" aria-label="Myntra">
-      <path d="M7 31 18 9l12 22L41 9l12 22L64 9" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="8" />
-    </svg>
-  );
-}
-
-function FlipkartMark() {
-  return (
-    <svg className="brand-logo flipkart-logo" viewBox="0 0 48 48" role="img" aria-label="Flipkart">
-      <path d="M10 16.5h28v23H10z" fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="4" />
-      <path d="M16 16.5c0-6 3.3-9.5 8-9.5s8 3.5 8 9.5" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="4" />
-      <path d="M25.7 18.8h5.1v4.4h-4.2v2.6h4v4.2h-4V35h-5v-9.2c0-4.6 2.2-7 6.4-7Z" fill="currentColor" />
-    </svg>
-  );
-}
-
 const faqs = [
   { question: 'What laptop brands and models do you supply?', answer: 'We source business-ready laptops and desktops from trusted brands based on your workload, budget, and preferred specifications. Our team can help you compare the right options before you buy.' },
   { question: 'Can I rent laptops for a short-term project or event?', answer: 'Yes. Our laptop rental service is designed for projects, training programs, events, temporary teams, and urgent requirements. Tell us your quantity, dates, and specifications and we will recommend a practical setup.' },
@@ -138,33 +120,33 @@ function App() {
           </motion.div>
           <motion.div className="hero-visual" aria-label="Laptop rental and business hardware solutions" variants={{ hidden: { opacity: 0, scale: .96 }, visible: { opacity: 1, scale: 1, transition: { duration: .9 } } }}>
             <div className="visual-grid" />
-            <div className="hero-image-frame">
-              <img className="hero-image" src="/hero2.jpg" alt="Business technology workspace" />
-              <div className="hero-image-wash" />
-              <div className="hero-service-callout">
-                <span className="hero-callout-kicker">Business technology / on demand</span>
-                <strong>Ready for<br />what&apos;s next.</strong>
-                <div className="hero-callout-services"><span>01 / Rentals</span><span>02 / Hardware</span><span>03 / IT setups</span></div>
-              </div>
-              <div className="hero-image-caption"><span>Since</span><strong>2021</strong></div>
+            <div className="hero-image-frame" style={{ background: 'transparent' }}>
+              <img 
+                className="hero-image" 
+                src="/hero2.png" 
+                alt="Business technology workspace"
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'contain',
+                  background: 'transparent',
+                  transform: 'scale(1)'
+                }}
+              />
             </div>
-            <div className="visual-orbit orbit-one" />
-            <div className="visual-orbit orbit-two" />
-            <div className="visual-panel panel-orange"><span>01 / MOST REQUESTED</span><Clock3 size={62} strokeWidth={1.2} /><strong>LAPTOP<br />RENTALS</strong></div>
-            <div className="visual-panel panel-cream"><span>02 / BUSINESS READY</span><Laptop size={62} strokeWidth={1.2} /><strong>HARDWARE<br />SUPPLY</strong></div>
-            <div className="visual-panel panel-burgundy"><span>03 / BUILT TO LAST</span><Network size={62} strokeWidth={1.2} /><strong>IT &<br />NETWORKING</strong></div>
-            <div className="visual-sticker"><ShieldCheck size={17} /><span>Trusted technology.<br />Straightforward service.</span></div>
           </motion.div>
           <div className="hero-footer"><span>A trusted technology partner since 2021</span><span className="scroll-note">Scroll to discover <span>↓</span></span><span>Serving businesses across India</span></div>
         </motion.section>
 
-        <div className="trusted-strip" aria-label="Companies we work with">
-          <span>Trusted by teams at</span>
-          <MyntraMark />
-          <FlipkartMark />
-          <img className="brand-logo hdfc-logo" src="https://cdn.simpleicons.org/hdfcbank/123f46" alt="HDFC Bank" />
-          <img className="brand-logo phonepe-logo" src="https://cdn.simpleicons.org/phonepe/123f46" alt="PhonePe" />
-          <img className="brand-logo tcs-logo" src="https://cdn.simpleicons.org/tcs/123f46" alt="Tata Consultancy Services" />
+        {/* Trusted Strip with logo images */}
+        <div className="trusted-strip" aria-label="Trusted by companies">
+          <div className="trusted-companies">
+            <img src="/company/logo1.png" alt="Client logo" className="trusted-logo" />
+            <img src="/company/logo2.png" alt="Client logo" className="trusted-logo" />
+            <img src="/company/logo3.png" alt="Client logo" className="trusted-logo" />
+            <img src="/company/logo4.webp" alt="Client logo" className="trusted-logo" />
+            <img src="/company/logo5.webp" alt="Client logo" className="trusted-logo" />
+          </div>
         </div>
 
         <motion.section className="statement-section" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }}>
@@ -212,7 +194,7 @@ function App() {
         </motion.section>
 
         <motion.section className="contact-section" id="contact" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }}>
-          <div className="contact-intro"><div className="section-kicker">05 / Let’s get started</div><h2>Need the<br /><span>right technology</span><br /><em>partner?</em></h2><p>Tell us what your business needs. Whether it is one laptop or a complete rollout, our team will help you find a practical way forward.</p><div className="contact-details"><a href="tel:+918582937283"><Headphones size={20} /><span>Speak with our team<br /><strong>+91 85829 37283</strong></span></a><div><PackageCheck size={20} /><span>Visit our office<br /><strong>Kolkata, West Bengal</strong></span></div></div></div>
+          <div className="contact-intro"><div className="section-kicker">05 / Let's get started</div><h2>Need the<br /><span>right technology</span><br /><em>partner?</em></h2><p>Tell us what your business needs. Whether it is one laptop or a complete rollout, our team will help you find a practical way forward.</p><div className="contact-details"><a href="tel:+918582937283"><Headphones size={20} /><span>Speak with our team<br /><strong>+91 85829 37283</strong></span></a><div><PackageCheck size={20} /><span>Visit our office<br /><strong>Kolkata, West Bengal</strong></span></div></div></div>
           <div className="contact-form-wrap">{submitted ? <div className="success-message"><span><Check size={22} /></span><h3>Thanks for reaching out.</h3><p>Your enquiry is in good hands. A KIS team member will be in touch shortly.</p><button className="text-link" onClick={() => setSubmitted(false)}>Send another enquiry <ArrowUpRight size={16} /></button></div> : <form onSubmit={handleSubmit}><div className="form-row"><label>Your name<input name="name" type="text" required placeholder="How should we call you?" /></label><label>Phone number<input name="phone" type="tel" required placeholder="+91 00000 00000" /></label></div><label>What do you need?<select name="service" defaultValue=""><option value="" disabled>Select a solution</option><option>Laptop rentals</option><option>Laptop or desktop sales</option><option>Hardware supply</option><option>Web development</option><option>Klarone technology guidance</option></select></label><label>A little more detail<textarea name="details" required rows={4} placeholder="Tell us what your business needs..." /></label><button className="button button-orange" type="submit">Send enquiry <Send size={17} /></button></form>}</div>
         </motion.section>
       </main>
