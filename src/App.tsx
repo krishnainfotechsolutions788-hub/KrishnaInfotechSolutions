@@ -5,7 +5,6 @@ import {
   Check,
   ChevronDown,
   Clock3,
-  Globe2,
   Headphones,
   Laptop,
   Menu,
@@ -13,41 +12,42 @@ import {
   PackageCheck,
   Send,
   ShieldCheck,
+  Wrench,
   X,
 } from 'lucide-react';
 
 const services = [
   {
     number: '01',
-    icon: Clock3,
-    title: 'Laptop\nRentals',
-    description: 'Flexible, ready-to-work laptops for projects, events, new teams, and every important deadline.',
+    icon: Wrench,
+    title: 'Laptop Repair &\nUpgrades',
+    description: 'Expert diagnostics and repair for motherboard issues, SSD/RAM upgrades, screen replacements, and hardware troubleshooting.',
     tone: 'orange',
-    link: 'Explore rentals',
+    link: 'Get repair support',
   },
   {
     number: '02',
-    icon: Laptop,
-    title: 'Laptop &\nDesktop Sales',
-    description: 'Business-ready devices from trusted brands, selected around your team, budget, and workload.',
+    icon: Clock3,
+    title: 'Laptop\nRentals',
+    description: 'Flexible, ready-to-work laptops for projects, events, new teams, and every important deadline.',
     tone: 'teal',
-    link: 'Find your hardware',
+    link: 'Explore rentals',
   },
   {
     number: '03',
-    icon: PackageCheck,
-    title: 'Hardware\nSupply',
-    description: 'Monitors, accessories, printers, and complete technology setups supplied without the guesswork.',
+    icon: Laptop,
+    title: 'Laptop &\nDesktop Sales',
+    description: 'Business-ready devices from trusted brands, selected around your team, budget, and workload.',
     tone: 'burgundy',
-    link: 'Source your setup',
+    link: 'Find your hardware',
   },
   {
     number: '04',
-    icon: Globe2,
-    title: 'Web\nDevelopment',
-    description: 'Professional websites and custom digital solutions designed to help your business stand out online.',
+    icon: PackageCheck,
+    title: 'Hardware\nSupply',
+    description: 'Monitors, accessories, printers, and complete technology setups supplied without the guesswork.',
     tone: 'cream',
-    link: 'Explore web development',
+    link: 'Source your setup',
   },
 ];
 
@@ -195,7 +195,7 @@ function App() {
 
         <motion.section className="contact-section" id="contact" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }}>
           <div className="contact-intro"><div className="section-kicker">05 / Let's get started</div><h2>Need the<br /><span>right technology</span><br /><em>partner?</em></h2><p>Tell us what your business needs. Whether it is one laptop or a complete rollout, our team will help you find a practical way forward.</p><div className="contact-details"><a href="tel:+918582937283"><Headphones size={20} /><span>Speak with our team<br /><strong>+91 85829 37283</strong></span></a><div><PackageCheck size={20} /><span>Visit our office<br /><strong>Kolkata, West Bengal</strong></span></div></div></div>
-          <div className="contact-form-wrap">{submitted ? <div className="success-message"><span><Check size={22} /></span><h3>Thanks for reaching out.</h3><p>Your enquiry is in good hands. A KIS team member will be in touch shortly.</p><button className="text-link" onClick={() => setSubmitted(false)}>Send another enquiry <ArrowUpRight size={16} /></button></div> : <form onSubmit={handleSubmit}><div className="form-row"><label>Your name<input name="name" type="text" required placeholder="How should we call you?" /></label><label>Phone number<input name="phone" type="tel" required placeholder="+91 00000 00000" /></label></div><label>What do you need?<select name="service" defaultValue=""><option value="" disabled>Select a solution</option><option>Laptop rentals</option><option>Laptop or desktop sales</option><option>Hardware supply</option><option>Web development</option><option>Klarone technology guidance</option></select></label><label>A little more detail<textarea name="details" required rows={4} placeholder="Tell us what your business needs..." /></label><button className="button button-orange" type="submit">Send enquiry <Send size={17} /></button></form>}</div>
+          <div className="contact-form-wrap">{submitted ? <div className="success-message"><span><Check size={22} /></span><h3>Thanks for reaching out.</h3><p>Your enquiry is in good hands. A KIS team member will be in touch shortly.</p><button className="text-link" onClick={() => setSubmitted(false)}>Send another enquiry <ArrowUpRight size={16} /></button></div> : <form onSubmit={handleSubmit}><div className="form-row"><label>Your name<input name="name" type="text" required placeholder="How should we call you?" /></label><label>Phone number<input name="phone" type="tel" required placeholder="+91 00000 00000" /></label></div><label>What do you need?<select name="service" defaultValue=""><option value="" disabled>Select a solution</option><option>Laptop rentals</option><option>Laptop or desktop sales</option><option>Hardware supply</option><option>Laptop repair & upgrades</option><option>Klarone technology guidance</option></select></label><label>A little more detail<textarea name="details" required rows={4} placeholder="Tell us what your business needs..." /></label><button className="button button-orange" type="submit">Send enquiry <Send size={17} /></button></form>}</div>
         </motion.section>
       </main>
 
