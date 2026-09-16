@@ -1,9 +1,11 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowUpRight,
   Check,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Clock3,
   Headphones,
   Laptop,
@@ -12,9 +14,65 @@ import {
   PackageCheck,
   Send,
   ShieldCheck,
+  Sparkles,
   Wrench,
   X,
 } from 'lucide-react';
+
+const whatsappNumber = '918582937283';
+const address = 'Entrance from, 1st floor, 1 Acharya Jagadish Chandra Bose Road, Lord Sinha Road, Kolkata, West Bengal 700020';
+const whatsappLink = (message: string) => `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+const heroSlides = [
+  {
+    id: 1,
+    titleFormatted: (
+      <>
+        Technology that <br /><em> works </em>
+        for your <br /><span>business.</span>
+      </>
+    ),
+    description: 'From laptop rentals that keep a project moving to complete workplace setups, KIS is the dependable technology partner behind your next step.',
+    buttonText: 'Tell us what you need',
+    buttonLink: whatsappLink('Hi, I visited the KIS website and would like to discuss my technology needs.'),
+    secondaryLinkText: 'View our solutions',
+    secondaryLinkHref: '#services',
+    image: '/hero/hero1.png',
+    imageAlt: 'Modern corporate technology office and laptop workstations',
+  },
+  {
+    id: 2,
+    titleFormatted: (
+      <>
+        Enterprise laptop<br />
+        <em>rentals</em> ready for <br /> <span>deployment.</span>
+      </>
+    ),
+    description: 'Ready-to-work laptops and workstations for projects, events, expanding teams, and critical deadlines with dedicated support.',
+    buttonText: 'Explore laptop rentals',
+    buttonLink: whatsappLink('Hi, I visited the KIS website and would like to inquire about laptop rentals.'),
+    secondaryLinkText: 'Explore all hardware',
+    secondaryLinkHref: '#products',
+    image: '/hero/hero2.png',
+    imageAlt: 'High performance business laptops and team workspace',
+  },
+  {
+    id: 3,
+    titleFormatted: (
+      <>
+        Monitors, <em>accessories</em><br />
+        & workplace <br /><span>hardware.</span>
+      </>
+    ),
+    description: 'Equip your offices with trusted business monitors, peripherals, networking switches, and complete workstation supply without the guesswork.',
+    buttonText: 'Request hardware quote',
+    buttonLink: whatsappLink('Hi, I visited the KIS website and would like to request an IT infrastructure quote.'),
+    secondaryLinkText: 'Browse accessories',
+    secondaryLinkHref: '#products',
+    image: '/hero/hero3.png',
+    imageAlt: 'Dual monitors, clean workspace display and peripherals',
+  },
+];
 
 const services = [
   {
@@ -59,10 +117,6 @@ const products = [
 ];
 
 const benefits = ['One accountable technology partner', '20+ years of dependable service', 'Fast, human support for every order'];
-const whatsappNumber = '918582937283';
-const address = 'Entrance from, 1st floor, 1 Acharya Jagadish Chandra Bose Road, Lord Sinha Road, Kolkata, West Bengal 700020';
-
-const whatsappLink = (message: string) => `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
 const faqs = [
   { question: 'What laptop brands and models do you supply?', answer: 'We source business-ready laptops and desktops from trusted brands based on your workload, budget, and preferred specifications. Our team can help you compare the right options before you buy.' },
@@ -76,6 +130,30 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  const slide = heroSlides[currentSlide];
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -108,35 +186,89 @@ function App() {
       </header>
 
       <main id="top">
-        <motion.section className="hero-section" initial="hidden" animate="visible" variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12 } } }}>
-          <motion.div className="hero-copy" variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7 } } }}>
-            <div className="eyebrow"><span className="eyebrow-line" /> Krishna Infotech Solutions · Est. 2021</div>
-            <h1>Technology<br /><em>that works</em><br />for your<br /><span>business.</span></h1>
-            <p className="hero-intro">From laptop rentals that keep a project moving to complete workplace setups, KIS is the dependable technology partner behind your next step.</p>
-            <div className="hero-actions">
-              <a className="button button-orange" href={whatsappLink('Hi, I visited the KIS website and would like to discuss my technology needs.')} target="_blank" rel="noreferrer">Tell us what you need <ArrowUpRight size={18} /></a>
-              <a className="text-link" href="#services">View our solutions <span>↓</span></a>
-            </div>
-          </motion.div>
-          <motion.div className="hero-visual" aria-label="Laptop rental and business hardware solutions" variants={{ hidden: { opacity: 0, scale: .96 }, visible: { opacity: 1, scale: 1, transition: { duration: .9 } } }}>
-            <div className="visual-grid" />
-            <div className="hero-image-frame" style={{ background: 'transparent' }}>
-              <img 
-                className="hero-image" 
-                src="/hero2.png" 
-                alt="Business technology workspace"
-                style={{ 
-                  width: '100%', 
-                  height: '100%', 
-                  objectFit: 'contain',
-                  background: 'transparent',
-                  transform: 'scale(1)'
-                }}
+        <section 
+          className="hero-section hero-fullscreen-mode"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Fullscreen Landscape Background with Transitions */}
+          <div className="hero-fullscreen-bg" aria-hidden="true">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={slide.id}
+                className="hero-bg-landscape"
+                src={slide.image}
+                alt={slide.imageAlt}
+                initial={{ opacity: 0, scale: 1.04 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.75, ease: 'easeOut' }}
               />
+            </AnimatePresence>
+            <div className="hero-bg-gradient-overlay" />
+          </div>
+
+          {/* Text Content Overlay */}
+          <div className="hero-content-stage">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={slide.id}
+                className="hero-copy-column"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <h1 className="hero-heading">{slide.titleFormatted}</h1>
+                <p className="hero-intro">{slide.description}</p>
+                
+                <div className="hero-actions">
+                  <a className="button button-orange" href={slide.buttonLink} target="_blank" rel="noreferrer">
+                    {slide.buttonText} <ArrowUpRight size={17} />
+                  </a>
+                  {slide.secondaryLinkText && (
+                    <a className="text-link" href={slide.secondaryLinkHref}>
+                      {slide.secondaryLinkText} <span>↓</span>
+                    </a>
+                  )}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Carousel Navigation Pill Controls */}
+            <div className="hero-carousel-controls" aria-label="Hero carousel navigation">
+              <button
+                type="button"
+                className="carousel-arrow"
+                onClick={prevSlide}
+                aria-label="Previous slide"
+              >
+                <ChevronLeft size={16} />
+              </button>
+
+              <div className="carousel-indicators">
+                {heroSlides.map((s, idx) => (
+                  <button
+                    key={s.id}
+                    type="button"
+                    className={`carousel-indicator-dot ${idx === currentSlide ? 'is-active' : ''}`}
+                    onClick={() => goToSlide(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
+                ))}
+              </div>
+
+              <button
+                type="button"
+                className="carousel-arrow"
+                onClick={nextSlide}
+                aria-label="Next slide"
+              >
+                <ChevronRight size={16} />
+              </button>
             </div>
-          </motion.div>
-          <div className="hero-footer"><span>A trusted technology partner since 2021</span><span className="scroll-note">Scroll to discover <span>↓</span></span><span>Serving businesses across India</span></div>
-        </motion.section>
+          </div>
+        </section>
 
         {/* Trusted Strip with logo images */}
         <div className="trusted-strip" aria-label="Trusted by companies">
@@ -150,7 +282,6 @@ function App() {
         </div>
 
         <motion.section className="statement-section" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }}>
-          <div className="section-kicker">01 / The KIS difference</div>
           <div className="statement-content">
             <h2>Good technology<br /><span>should make work</span><br />feel <em>simple.</em></h2>
             <div className="statement-side">
@@ -162,39 +293,53 @@ function App() {
 
         <motion.section className="services-section" id="services" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .12 }}>
           <div className="section-heading">
-            <div><div className="section-kicker">02 / Core solutions</div><h2>Built around<br />your <em>business.</em></h2></div>
+            <div><h2>Built around<br />your <em>business.</em></h2></div>
             <p>Our strongest work is hands-on: the devices, hardware, rentals, and support your people rely on every day.</p>
           </div>
           <div className="service-grid">
             {services.map(({ number, icon: Icon, title, description, tone, link }) => (
               <motion.article className={`service-card ${tone}`} key={number} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: .45, delay: Number(number) * .05 }} viewport={{ once: true, amount: .15 }}>
-                <div className="card-top"><span>{number}</span><Icon size={28} strokeWidth={1.5} /></div>
+                <div className="card-top"><Icon size={28} strokeWidth={1.5} /></div>
                 <h3>{title.split('\n').map((line) => <span key={line}>{line}<br /></span>)}</h3>
                 <p>{description}</p>
                 <a href={whatsappLink(`Hi, I visited the KIS website. I want to have a query related to ${link.toLowerCase()}.`)} target="_blank" rel="noreferrer">{link} <ArrowUpRight size={16} /></a>
               </motion.article>
             ))}
           </div>
-          <div className="klarone-note"><div className="klarone-mark"><Laptop size={21} /></div><div><span className="section-kicker">A KIS company / B2C</span><h3>Meet Klarone</h3><p>Klarone helps you buy the right laptop and technology for your needs. Get clear, personal advice and buy with confidence—without the confusion.</p></div><a href="https://klarone.in" target="_blank" rel="noreferrer">Explore Klarone <ArrowUpRight size={16} /></a></div>
+          <div className="klarone-note">
+            <div className="klarone-badge-group">
+              <div className="klarone-mark"><Laptop size={21} /></div>
+              <div className="kis-wordmark">
+                <strong>KRISHNA</strong>
+                <span>INFOTECH SOLUTIONS</span>
+              </div>
+            </div>
+            <div>
+              <span className="section-kicker">A KIS Company / B2C</span>
+              <h3>Meet Klarone</h3>
+              <p>Klarone helps you buy the right laptop and technology for your needs. Get clear, personal advice and buy with confidence—without the confusion.</p>
+            </div>
+            <a href="https://klarone.in" target="_blank" rel="noreferrer">Explore Klarone <ArrowUpRight size={16} /></a>
+          </div>
         </motion.section>
 
         <motion.section className="products-section" id="products" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .12 }}>
-          <div className="products-heading"><div><div className="section-kicker">03 / Products</div><h2>Everything your<br /><em>workplace needs.</em></h2></div><div><p>We help you source the business technology that fits how your team works—without the uncertainty of buying it alone.</p><a className="arrow-link" href={whatsappLink('Hi, I visited the KIS website and would like to receive your product list.')} target="_blank" rel="noreferrer">Request our product list <span><ArrowUpRight size={16} /></span></a></div></div>
+          <div className="products-heading"><div><h2>Everything your<br /><em>workplace needs.</em></h2></div><div><p>We help you source the business technology that fits how your team works—without the uncertainty of buying it alone.</p><a className="arrow-link" href={whatsappLink('Hi, I visited the KIS website and would like to receive your product list.')} target="_blank" rel="noreferrer">Request our product list <span><ArrowUpRight size={16} /></span></a></div></div>
           <div className="product-grid">{products.map(({ number, image, title, description, items }) => <article className="product-card" key={number}><div className="product-image-wrap"><img src={image} alt="" /></div><div className="product-card-body"><h3>{title}</h3><p>{description}</p><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul><a href={whatsappLink(`Hi, I visited the KIS website. I would like to enquire about ${title.toLowerCase()}.`)} target="_blank" rel="noreferrer">Enquire now <ArrowUpRight size={15} /></a></div></article>)}</div>
         </motion.section>
 
         <motion.section className="about-section" id="about" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }}>
-          <div className="about-graphic"><img className="kis-logo" src="/icon1.png" alt="" /><div className="graphic-label">Krishna Infotech Solutions /<br />A trusted name since 2021</div><div className="graphic-dot" /></div>
-          <div className="about-copy"><div className="section-kicker">03 / About KIS</div><h2>Experience you<br />can <em>count on.</em></h2><p>What started as a technology company built on trust has grown into a reliable B2B partner for organizations across India. We keep things clear, responsive, and focused on what helps your business perform.</p><div className="benefit-list">{benefits.map((benefit) => <div key={benefit}><span><Check size={14} /></span>{benefit}</div>)}</div><a className="button button-dark" href={whatsappLink('Hi, I visited the KIS website and would like to work with your team.')} target="_blank" rel="noreferrer">Work with KIS <ArrowUpRight size={18} /></a></div>
+          <div className="about-graphic"><img className="kis-logo" src="/icon1.png" alt="" /><div className="graphic-dot" /></div>
+          <div className="about-copy"><h2>Experience you<br />can <em>count on.</em></h2><p>What started as a technology company built on trust has grown into a reliable B2B partner for organizations across India. We keep things clear, responsive, and focused on what helps your business perform.</p><div className="benefit-list">{benefits.map((benefit) => <div key={benefit}><span><Check size={14} /></span>{benefit}</div>)}</div><a className="button button-dark" href={whatsappLink('Hi, I visited the KIS website and would like to work with your team.')} target="_blank" rel="noreferrer">Work with KIS <ArrowUpRight size={18} /></a></div>
         </motion.section>
 
         <motion.section className="faq-section" id="faq" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }}>
-          <div className="faq-heading"><div className="section-kicker">04 / Common questions</div><h2>Clear answers<br />before you <em>start.</em></h2><p>Everything you need to know about working with Krishna Infotech Solutions.</p></div>
+          <div className="faq-heading"><h2>Clear answers<br />before you <em>start.</em></h2><p>Everything you need to know about working with Krishna Infotech Solutions.</p></div>
           <div className="faq-list">{faqs.map((faq, index) => <div className={openFaq === index ? 'faq-item is-open' : 'faq-item'} key={faq.question}><button className="faq-question" onClick={() => setOpenFaq(openFaq === index ? null : index)} aria-expanded={openFaq === index}><span><small>0{index + 1}</small>{faq.question}</span><ChevronDown size={18} /></button><div className="faq-answer"><p>{faq.answer}</p></div></div>)}</div>
         </motion.section>
 
         <motion.section className="contact-section" id="contact" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }}>
-          <div className="contact-intro"><div className="section-kicker">05 / Let's get started</div><h2>Need the<br /><span>right technology</span><br /><em>partner?</em></h2><p>Tell us what your business needs. Whether it is one laptop or a complete rollout, our team will help you find a practical way forward.</p><div className="contact-details"><a href="tel:+918582937283"><Headphones size={20} /><span>Speak with our team<br /><strong>+91 85829 37283</strong></span></a><div><PackageCheck size={20} /><span>Visit our office<br /><strong>Kolkata, West Bengal</strong></span></div></div></div>
+          <div className="contact-intro"><h2>Need the<br /><span>right technology</span><br /><em>partner?</em></h2><p>Tell us what your business needs. Whether it is one laptop or a complete rollout, our team will help you find a practical way forward.</p><div className="contact-details"><a href="tel:+918582937283"><Headphones size={20} /><span>Speak with our team<br /><strong>+91 85829 37283</strong></span></a><div><PackageCheck size={20} /><span>Visit our office<br /><strong>Kolkata, West Bengal</strong></span></div></div></div>
           <div className="contact-form-wrap">{submitted ? <div className="success-message"><span><Check size={22} /></span><h3>Thanks for reaching out.</h3><p>Your enquiry is in good hands. A KIS team member will be in touch shortly.</p><button className="text-link" onClick={() => setSubmitted(false)}>Send another enquiry <ArrowUpRight size={16} /></button></div> : <form onSubmit={handleSubmit}><div className="form-row"><label>Your name<input name="name" type="text" required placeholder="How should we call you?" /></label><label>Phone number<input name="phone" type="tel" required placeholder="+91 00000 00000" /></label></div><label>What do you need?<select name="service" defaultValue=""><option value="" disabled>Select a solution</option><option>Laptop rentals</option><option>Laptop or desktop sales</option><option>Hardware supply</option><option>Laptop repair & upgrades</option><option>Klarone technology guidance</option></select></label><label>A little more detail<textarea name="details" required rows={4} placeholder="Tell us what your business needs..." /></label><button className="button button-orange" type="submit">Send enquiry <Send size={17} /></button></form>}</div>
         </motion.section>
       </main>
