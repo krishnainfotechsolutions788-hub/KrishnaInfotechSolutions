@@ -38,6 +38,7 @@ const heroSlides = [
     secondaryLinkText: 'View our solutions',
     secondaryLinkHref: '#services',
     image: '/hero/hero1.png',
+    mobileImage: '/hero/hero11.png',
     imageAlt: 'Modern corporate technology office and laptop workstations',
   },
   {
@@ -54,6 +55,7 @@ const heroSlides = [
     secondaryLinkText: 'Explore all hardware',
     secondaryLinkHref: '#products',
     image: '/hero/hero2.png',
+    mobileImage: '/hero/hero22.png',
     imageAlt: 'High performance business laptops and team workspace',
   },
   {
@@ -70,6 +72,7 @@ const heroSlides = [
     secondaryLinkText: 'Browse accessories',
     secondaryLinkHref: '#products',
     image: '/hero/hero3.png',
+    mobileImage: '/hero/hero33.png',
     imageAlt: 'Dual monitors, clean workspace display and peripherals',
   },
 ];
@@ -131,7 +134,6 @@ function App() {
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
@@ -146,12 +148,11 @@ function App() {
   };
 
   useEffect(() => {
-    if (isPaused) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [isPaused]);
+  }, []);
 
   const slide = heroSlides[currentSlide];
 
@@ -186,24 +187,27 @@ function App() {
       </header>
 
       <main id="top">
-        <section 
-          className="hero-section hero-fullscreen-mode"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          {/* Fullscreen Landscape Background with Transitions */}
+        <section className="hero-section hero-fullscreen-mode">
+          {/* Fullscreen Background with Transitions — serves different image on mobile */}
           <div className="hero-fullscreen-bg" aria-hidden="true">
             <AnimatePresence mode="wait">
-              <motion.img
+              <motion.div
                 key={slide.id}
-                className="hero-bg-landscape"
-                src={slide.image}
-                alt={slide.imageAlt}
+                className="hero-bg-picture"
                 initial={{ opacity: 0, scale: 1.04 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.75, ease: 'easeOut' }}
-              />
+              >
+                <picture>
+                  <source media="(max-width: 680px)" srcSet={slide.mobileImage} />
+                  <img
+                    className="hero-bg-landscape"
+                    src={slide.image}
+                    alt={slide.imageAlt}
+                  />
+                </picture>
+              </motion.div>
             </AnimatePresence>
             <div className="hero-bg-gradient-overlay" />
           </div>
@@ -221,7 +225,7 @@ function App() {
               >
                 <h1 className="hero-heading">{slide.titleFormatted}</h1>
                 <p className="hero-intro">{slide.description}</p>
-                
+
                 <div className="hero-actions">
                   <a className="button button-orange" href={slide.buttonLink} target="_blank" rel="noreferrer">
                     {slide.buttonText} <ArrowUpRight size={17} />
