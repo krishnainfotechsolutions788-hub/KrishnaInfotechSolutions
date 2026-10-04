@@ -37,8 +37,8 @@ const heroSlides = [
     buttonLink: whatsappLink('Hi, I visited the KIS website and would like to discuss my technology needs.'),
     secondaryLinkText: 'View our solutions',
     secondaryLinkHref: '#services',
-    image: '/hero/hero1.png',
-    mobileImage: '/hero/hero11.png',
+    image: '/hero/hero1.webp',
+    mobileImage: '/hero/hero11.webp',
     imageAlt: 'Modern corporate technology office and laptop workstations',
   },
   {
@@ -54,8 +54,8 @@ const heroSlides = [
     buttonLink: whatsappLink('Hi, I visited the KIS website and would like to inquire about laptop rentals.'),
     secondaryLinkText: 'Explore all hardware',
     secondaryLinkHref: '#products',
-    image: '/hero/hero2.png',
-    mobileImage: '/hero/hero22.png',
+    image: '/hero/hero2.webp',
+    mobileImage: '/hero/hero22.webp',
     imageAlt: 'High performance business laptops and team workspace',
   },
   {
@@ -71,8 +71,8 @@ const heroSlides = [
     buttonLink: whatsappLink('Hi, I visited the KIS website and would like to request an IT infrastructure quote.'),
     secondaryLinkText: 'Browse accessories',
     secondaryLinkHref: '#products',
-    image: '/hero/hero3.png',
-    mobileImage: '/hero/hero33.png',
+    image: '/hero/hero3.webp',
+    mobileImage: '/hero/hero33.webp',
     imageAlt: 'Dual monitors, clean workspace display and peripherals',
   },
 ];
@@ -113,10 +113,10 @@ const services = [
 ];
 
 const products = [
-  { number: '01', image: '/product-laptop.png', title: 'Laptops & desktops', description: 'Reliable business devices for teams, individual workstations, and complete rollouts.', items: ['Business laptops', 'Desktop PCs', 'Workstations'] },
-  { number: '02', image: '/product-monitor.png', title: 'Monitors & displays', description: 'The right screen setup for productive desks, meeting rooms, and focused work.', items: ['Business monitors', 'Dual-display setups', 'Presentation displays'] },
-  { number: '03', image: '/product-accessories.png', title: 'Accessories & peripherals', description: 'The essentials that make every setup complete, comfortable, and ready to use.', items: ['Keyboards & mice', 'Docking stations', 'Printers & UPS'] },
-  { number: '04', image: '/product-networking.png', title: 'Networking & IT hardware', description: 'Practical infrastructure for connected, dependable workplaces.', items: ['Routers & switches', 'Wi-Fi equipment', 'Cabling & installation'] },
+  { number: '01', image: '/product-laptop.webp', title: 'Laptops & desktops', description: 'Reliable business devices for teams, individual workstations, and complete rollouts.', items: ['Business laptops', 'Desktop PCs', 'Workstations'] },
+  { number: '02', image: '/product-monitor.webp', title: 'Monitors & displays', description: 'The right screen setup for productive desks, meeting rooms, and focused work.', items: ['Business monitors', 'Dual-display setups', 'Presentation displays'] },
+  { number: '03', image: '/product-accessories.webp', title: 'Accessories & peripherals', description: 'The essentials that make every setup complete, comfortable, and ready to use.', items: ['Keyboards & mice', 'Docking stations', 'Printers & UPS'] },
+  { number: '04', image: '/product-networking.webp', title: 'Networking & IT hardware', description: 'Practical infrastructure for connected, dependable workplaces.', items: ['Routers & switches', 'Wi-Fi equipment', 'Cabling & installation'] },
 ];
 
 const benefits = ['One accountable technology partner', '20+ years of dependable service', 'Fast, human support for every order'];
