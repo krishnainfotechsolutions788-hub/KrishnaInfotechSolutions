@@ -33,35 +33,35 @@ button { cursor: pointer; }
   width: 100%;
   z-index: 20;
 }
-.kis-brand { align-items: center; display: inline-flex; gap: 13px; }
+.kis-brand {
+  align-items: center;
+  background: transparent;
+  display: inline-flex;
+  padding: 0;
+  text-decoration: none;
+  transition: opacity .2s ease;
+}
+.kis-brand:hover {
+  opacity: 0.9;
+}
 .kis-logo { display: block; height: 48px; object-fit: contain; width: 48px; }
-.kis-wordmark { 
-  display: flex; 
-  flex-direction: column; 
-  justify-content: center;
-  gap: 3px; 
-  line-height: 1; 
+.kis-logo-brand {
+  display: block;
+  height: 48px;
+  width: auto;
+  max-width: 260px;
+  object-fit: contain;
+  transition: transform .2s ease;
 }
-.kis-wordmark strong { 
-  color: #123f46; 
-  font-family: 'Geist Mono', monospace;
-  font-size: 16px; 
-  font-weight: 700; 
-  letter-spacing: 0.16em; 
-  line-height: 1.05;
-  text-transform: uppercase;
+.kis-brand:hover .kis-logo-brand {
+  transform: scale(1.02);
 }
-.kis-wordmark span { 
-  color: #f25926; 
-  font-family: 'Geist Mono', monospace; 
-  font-size: 8px; 
-  font-weight: 600;
-  letter-spacing: 0.16em; 
-  line-height: 1;
-  text-transform: uppercase;
+.footer-logo-img {
+  height: 36px;
+  max-width: 200px;
+  mix-blend-mode: screen;
+  filter: contrast(1.1) brightness(1.05);
 }
-.footer-brand .kis-wordmark strong { color: #f0eeea; }
-.footer-brand .kis-wordmark span { color: #f6aa89; }
 /* nav-link: Inter 14px / 500 */
 /* nav-link: Inter 14px / 500 / tracking-wide */
 .main-nav { align-items: center; display: flex; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 500; gap: 34px; letter-spacing: -0.01em; text-transform: none; }
@@ -523,6 +523,16 @@ h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: clamp(32px, 4.5vw,
 /* About Section */
 .about-section { background: #742033; color: #f0eeea; display: grid; grid-template-columns: 1fr 1fr; min-height: 620px; }
 .about-graphic { align-items: center; background: #123f46; display: flex; justify-content: center; overflow: hidden; position: relative; }
+.about-kis-logo {
+  display: block;
+  filter: drop-shadow(0 20px 24px rgba(0, 0, 0, 0.45));
+  height: auto;
+  max-height: 120px;
+  max-width: 82%;
+  mix-blend-mode: screen;
+  object-fit: contain;
+  opacity: .95;
+}
 .about-graphic .kis-logo { filter: drop-shadow(0 20px 18px #061c2050); height: 270px; opacity: .98; width: 270px; }
 .graphic-label { bottom: 40px; color: #abc1bf; font-family: 'Geist Mono', monospace; font-size: 10px; left: 10%; line-height: 1.5; position: absolute; text-transform: uppercase; }
 .graphic-dot { border: 1px solid #f25926; border-radius: 50%; height: 18px; position: absolute; right: 12%; top: 14%; width: 18px; }
@@ -604,8 +614,8 @@ form .button { margin-top: 4px; width: 100%; }
 @media (max-width: 680px) {
   .site-header { padding: 18px 6vw; }
   .kis-logo { height: 39px; width: 39px; }
-  .kis-wordmark strong { font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
-  .kis-wordmark span { font-size: 7px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; }
+  .kis-logo-brand { height: 38px; max-width: 200px; }
+  .footer-logo-img { height: 32px; max-width: 170px; }
   .menu-toggle { display: block; position: relative; z-index: 7; }
   .main-nav {
     align-items: flex-start;
@@ -787,6 +797,7 @@ form .button { margin-top: 4px; width: 100%; }
   .about-section, .contact-section { grid-template-columns: 1fr; }
   .about-graphic { min-height: 280px; }
   .about-graphic .kis-logo { height: 160px; width: 160px; }
+  .about-kis-logo { max-height: 90px; max-width: 80%; }
   .about-copy, .contact-section { padding: 60px 6vw; }
   .contact-form-wrap { padding: 22px; }
   .form-row { grid-template-columns: 1fr; gap: 0; }

@@ -171,8 +171,7 @@ function App() {
     <div className="site-shell">
       <header className="site-header">
         <a className="kis-brand" href="#top" aria-label="Krishna Infotech Solutions home">
-          <img className="kis-logo" src="/icon2.png" alt="" />
-          <span className="kis-wordmark"><strong>KRISHNA</strong><span>INFOTECH SOLUTIONS</span></span>
+          <img className="kis-logo-brand" src="/logo/white-kis-2.png" alt="Krishna Infotech Solutions" />
         </a>
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -333,7 +332,7 @@ function App() {
         </motion.section>
 
         <motion.section className="about-section" id="about" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .15 }}>
-          <div className="about-graphic"><img className="kis-logo" src="/icon1.png" alt="" /><div className="graphic-dot" /></div>
+          <div className="about-graphic"><img className="about-kis-logo" src="/logo/black-kis.jpg" alt="Krishna Infotech Solutions" /><div className="graphic-dot" /></div>
           <div className="about-copy"><h2>Experience you<br />can <em>count on.</em></h2><p>What started as a technology company built on trust has grown into a reliable B2B partner for organizations across India. We keep things clear, responsive, and focused on what helps your business perform.</p><div className="benefit-list">{benefits.map((benefit) => <div key={benefit}><span><Check size={14} /></span>{benefit}</div>)}</div><a className="button button-dark" href={whatsappLink('Hi, I visited the KIS website and would like to work with your team.')} target="_blank" rel="noreferrer">Work with KIS <ArrowUpRight size={18} /></a></div>
         </motion.section>
 
@@ -348,7 +347,7 @@ function App() {
         </motion.section>
       </main>
 
-      <footer className="site-footer"><div className="footer-brand-block"><a className="kis-brand footer-brand" href="#top"><img className="kis-logo" src="/icon1.png" alt="" /><span className="kis-wordmark"><strong>KRISHNA</strong><span>INFOTECH SOLUTIONS</span></span></a><p>Dependable technology<br />for the way you work.</p></div><div className="footer-address"><span className="footer-label">Visit us</span><p>{address}</p></div><div className="footer-contact"><span className="footer-label">Start a conversation</span><a href="tel:+918582937283">+91 85829 37283</a><a href={whatsappLink('Hi, I visited the KIS website and would like to speak with your team.')} target="_blank" rel="noreferrer">WhatsApp our team <ArrowUpRight size={15} /></a></div><div className="footer-links"><span className="footer-label">Explore</span><a href="#services">Solutions</a><a href="#about">About KIS</a><a href="#faq">FAQs</a><a href="https://klarone.in" target="_blank" rel="noreferrer">Klarone</a></div><span className="copyright">© 2025 Krishna Infotech Solutions. All rights reserved.</span></footer>
+      <footer className="site-footer"><div className="footer-brand-block"><a className="kis-brand footer-brand" href="#top"><img className="kis-logo-brand footer-logo-img" src="/logo/black-kis.jpg" alt="Krishna Infotech Solutions" /></a><p>Dependable technology<br />for the way you work.</p></div><div className="footer-address"><span className="footer-label">Visit us</span><p>{address}</p></div><div className="footer-contact"><span className="footer-label">Start a conversation</span><a href="tel:+918582937283">+91 85829 37283</a><a href={whatsappLink('Hi, I visited the KIS website and would like to speak with your team.')} target="_blank" rel="noreferrer">WhatsApp our team <ArrowUpRight size={15} /></a></div><div className="footer-links"><span className="footer-label">Explore</span><a href="#services">Solutions</a><a href="#about">About KIS</a><a href="#faq">FAQs</a><a href="https://klarone.in" target="_blank" rel="noreferrer">Klarone</a></div><span className="copyright">© 2025 Krishna Infotech Solutions. All rights reserved.</span></footer>
     </div>
   );
 }
